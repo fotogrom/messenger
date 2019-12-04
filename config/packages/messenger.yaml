@@ -1,0 +1,18 @@
+framework:
+    messenger:
+        #adapters:
+        #    default: "amqp://guest:guest@localhost:5672/%2f/messages"
+        # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
+        # failure_transport: failed
+
+        transports:
+            # https://symfony.com/doc/current/messenger.html#transport-configuration
+             amqp: '%env(MESSENGER_TRANSPORT_DSN)%'
+            # failed: 'doctrine://default?queue_name=failed'
+            # sync: 'sync://'
+
+        routing:
+            'App\Message\MyMessage':  amqp #messenger.default_sender
+            #'*': messenger.default_sender
+            # Route your messages to the transports
+            # 'App\Message\YourMessage': async
